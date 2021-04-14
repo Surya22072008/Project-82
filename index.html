@@ -1,0 +1,104 @@
+<html>
+<head>  
+
+
+    <script type="text/javascript">
+</script>
+
+</head>
+<body class="body_backgorund">
+
+<div align="center">
+<h1>Paint</h1>
+
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+        <br><br >
+
+<style> .body_backgorund {
+    background-image: url("bg1.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+  body{
+    cursor: pointer;
+  }
+  h1
+  {
+      color: red; 
+      font-size: 40px;
+  }
+  #myCanvas
+  {
+      border-width:10px;
+      background-color: white; 
+      border-style:ridge;
+  }
+
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 42px;
+    font-size: 16px;
+  }
+
+  input
+  {
+    margin-right: 20px;
+  }
+  </style>
+    
+<script > mouseevent = "";
+    canvas = document.getElementById("myCanvas");
+   ctx = canvas.getContext("2d");
+   lastxpostion = "";
+   lastyposition = "";
+   canvas.addEventListener("mousedown",my_mousedown);
+   function my_mousedown(e)
+   { mouseevent = "mouseDown";
+   console.log(mouseevent);
+   }
+   canvas.addEventListener("mouseleave",my_mouseleave);
+   function my_mouseleave(e) 
+   
+   {
+       mouseevent = "mouseLeave";
+       console.log(mouseevent);
+   }
+   canvas.addEventListener("mouseup",my_mouseup);
+   function my_mouseup(e) 
+   
+   {
+       mouseevent = "mouseUP";
+       console.log(mouseevent);
+   }
+   canvas.addEventListener("mousemove",my_mousemove);
+   function my_mousemove(e)
+       {
+           current_position_of_mouse_x = e.clientX - canvas.offsetLeft;
+           current_position_of_mouse_y = e.clientY - canvas.offsetTop;
+   
+           if (mouseevent == "mouseDown") {
+           ctx.beginPath();
+           ctx.strokeStyle = "red";
+           ctx.lineWidth = 5;
+           ctx.arc(current_position_of_mouse_x,current_position_of_mouse_y,50,0,2 * Math.PI);
+   
+           console.log("Last position of x and y coordinates = ");
+           console.log("x = " + lastxpostion + "y = " + lastyposition);
+           ctx.moveTo(lastxpostion, lastyposition);
+   
+           console.log("Current position of x and y coordinates = ");
+           console.log("x  = " + current_position_of_mouse_x + "y = " + current_position_of_mouse_y);
+           
+           ctx.stroke();
+           }
+   
+           lastxpostion = current_position_of_mouse_x; 
+           lastyposition = current_position_of_mouse_y;
+       }
+       
+       
+   </script>
+</body>
+</html>
